@@ -35,16 +35,6 @@
 			path = A4HaoNguyen;
 			sourceTree = "<group>";
 		};
-		EEED16032E3F3D690094632F /* A4HaoNguyenTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = A4HaoNguyenTests;
-			sourceTree = "<group>";
-		};
-		EEED160D2E3F3D690094632F /* A4HaoNguyenUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = A4HaoNguyenUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				EEED15F52E3F3D670094632F /* A4HaoNguyen */,
-				EEED16032E3F3D690094632F /* A4HaoNguyenTests */,
-				EEED160D2E3F3D690094632F /* A4HaoNguyenUITests */,
 				EEED15F42E3F3D670094632F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,9 +118,6 @@
 			dependencies = (
 				EEED16022E3F3D690094632F /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				EEED16032E3F3D690094632F /* A4HaoNguyenTests */,
-			);
 			name = A4HaoNguyenTests;
 			packageProductDependencies = (
 			);
@@ -152,9 +137,6 @@
 			);
 			dependencies = (
 				EEED160C2E3F3D690094632F /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				EEED160D2E3F3D690094632F /* A4HaoNguyenUITests */,
 			);
 			name = A4HaoNguyenUITests;
 			packageProductDependencies = (
