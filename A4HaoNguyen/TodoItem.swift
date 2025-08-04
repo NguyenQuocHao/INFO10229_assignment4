@@ -4,12 +4,53 @@
 //
 //  Created by user275773 on 8/3/25.
 //
+import SwiftUI
 
-class TodoItem {
-    var Id = 0
-    var Title = ""
-    var Priority = 0
-    var Deadline = 0
-    var Description = ""
+enum Priority {
+    case Critical
+    case Important
+    case Normal
+}
+
+struct TodoItem: Identifiable {
+    var id = 0
+    var title = ""
+    var priority = Priority.Normal
+    var deadline = Date()
+    var description = ""
+    
+//    var lateByDay: Int {
+//        let components = Calendar.current.dateComponents([.day], from: deadline, to: Date())
+//        return components.day ?? 0
+//    }
+//    
+//    var lateByHour: Int {
+//        let components = Calendar.current.dateComponents([.day], from: deadline, to: Date())
+//        return components.day ?? 0
+//    }
+    
+    var lateByMessage: String {
+        let components = Calendar.current.dateComponents([.day, .hour], from: deadline, to: Date())
+        let day = components.day ?? 0
+        
+//        let components2 = Calendar.current.dateComponents([.hour], from: deadline, to: Date())
+        let hour = components.hour ?? 0
+        
+        // Past due date
+        if (day >= 0 && hour >= 0) {
+            let remainingTimeMessage = "Already late by: "
+            let dayStr = "\(abs(day)) day\(abs(day) > 1 ? "s" : "") "
+            let hourStr = "\(abs(hour)) hour\(abs(hour) > 1 ? "s" : "")"
+            
+            return remainingTimeMessage + (day != 0 ? dayStr : "") + (hour != 0 ? hourStr : "")
+        }
+        
+        // Not due yet
+        let remainingTimeMessage = "Remaining time: "
+        let dayStr = "\(abs(day)) day\(abs(day) > 1 ? "s" : "") "
+        let hourStr = "\(abs(hour)) hour\(abs(hour) > 1 ? "s" : "")"
+        
+        return remainingTimeMessage + (day != 0 ? dayStr : "") + (hour != 0 ? hourStr : "")
+    }
 }
 

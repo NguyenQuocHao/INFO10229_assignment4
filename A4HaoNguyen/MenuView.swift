@@ -8,14 +8,32 @@
 import SwiftUI
 
 struct MenuView: View {
-    @State var list: [String] = ["a", "b"]
-    @State private var test = "yo"
+//    let yesterday = calendar.date(byAdding: .day, value: -1, to: Date())
+    @State private var yesterday: Date = {
+        Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+    }()
+
+    @State var list: [TodoItem] = ([
+        TodoItem(title: "Do iOS assignment",
+                 priority: Priority.Important,
+                 deadline: Calendar.current.date(byAdding: .day, value: -1, to: Date())!,
+                 description: "Test"),
+        TodoItem(title: "Study for CArchitecture",
+                 priority: Priority.Critical,
+                 deadline: Calendar.current.date(byAdding: .hour, value: 10, to: Date())!,
+                 description: "Test"),
+        TodoItem(title: "Do Math assignment",
+                 priority: Priority.Normal,
+                 deadline: Calendar.current.date(byAdding: .day, value: 2, to: Date())!,
+                 description: "Test"),
+        
+    ])
     
     var body: some View {
         NavigationStack{
             VStack{
-                ForEach(list, id:\.self){ id in
-                    NavigationLink(id, destination: ItemView(item: self.$list[0]))
+                ForEach(0..<list.count, id:\.self){ localId in
+                    NavigationLink(list[localId].title, destination: ItemView(item: list[localId]))
                         .navigationTitle(Text("Menu"))
                 }
             }
