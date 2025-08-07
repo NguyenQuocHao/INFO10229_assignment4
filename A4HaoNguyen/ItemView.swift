@@ -6,12 +6,12 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct ItemView: View {
     var item: TodoItem
-    let formatter1 = DateFormatter()
-//    formatter1. = .short
-    
+    let currentDate = Date() // Get the current date and time
+
 
 
     var body: some View {
