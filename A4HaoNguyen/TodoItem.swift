@@ -29,11 +29,18 @@ struct TodoItem: Identifiable {
 //        return components.day ?? 0
 //    }
     
+    var isLate: Bool {
+        let components = Calendar.current.dateComponents([.day, .hour], from: deadline, to: Date())
+        let day = components.day ?? 0
+        let hour = components.hour ?? 0
+        
+        return day >= 0 && hour >= 0
+    }
+    
     var lateByMessage: String {
         let components = Calendar.current.dateComponents([.day, .hour], from: deadline, to: Date())
         let day = components.day ?? 0
         
-//        let components2 = Calendar.current.dateComponents([.hour], from: deadline, to: Date())
         let hour = components.hour ?? 0
         
         // Past due date

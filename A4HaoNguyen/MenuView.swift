@@ -37,19 +37,7 @@ struct MenuView: View {
         return formatter.string(from: date)
     }
     
-    private func getIcon(priority: Priority) -> String {
-        switch priority {
-        case .Critical:
-            return "bolt"
-        case .Important:
-            return "exclamationmark"
-        default:
-            return "sun.max"
-        }
-    }
-    
-    var body: some View {
-        Toggle("Light Mode", isOn: $isLight)
+    var body: some View {        Toggle("Light Mode", isOn: $isLight)
         //                        .tint(.regText)
         NavigationStack{
             //            Toggle("Light Mode", isOn: $isLight)
@@ -58,21 +46,16 @@ struct MenuView: View {
                 
                 ForEach(0..<list.count, id:\.self){ localId in
                     NavigationLink(destination: ItemView(item: list[localId])) {
-                        Image(systemName: getIcon(priority: list[localId].priority)) // SF Symbol image
-                            .font(.system(size: 30))
-                            .foregroundColor(.red)
+                        Image(ViewUtils.getIcon(priority: list[localId].priority))
+                            .resizable()
+                            .frame(width: 50, height: 50)
                         
                         Text("\(list[localId].title)\nDeadline: \(formatDate(date: list[localId].deadline))")
                     }
-                    
-                    
                 }
                 
             }
             .navigationTitle(Text("Todo List"))
-            VStack{
-                
-            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         //        .foregroundStyle(.regText)
