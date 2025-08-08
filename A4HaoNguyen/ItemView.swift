@@ -11,35 +11,41 @@ import Foundation
 struct ItemView: View {
     var item: TodoItem
     let currentDate = Date() // Get the current date and time
-
-
-
+    
     var body: some View {
-        Spacer()
-        VStack(alignment: .leading){
-            Image(ViewUtils.getIcon(priority: item.priority))
-                .resizable()
-                .frame(width: 100, height: 120)
+        VStack(alignment: .leading) {
+            VStack{
+                Image(ViewUtils.getIcon(priority: item.priority))
+                    .resizable()
+                    .frame(width: 100, height: 120)
+                Text(item.title)
+                    .padding(.bottom, 7)
+                Text(item.deadlineStr)
+                    .bold()
+                    .padding(.bottom, 25)
+            }
+            .frame(maxWidth: .infinity)
             
-            Text(item.title)
-            Text(item.deadlineStr)
-                .bold()
+            VStack(alignment: .leading) {
+                Text("Priority: \(item.priority)")
+                Text("Description: \(item.description)")
+                Text(item.lateByMessage)
+                    .bold(item.isLate)
+                    .foregroundStyle(item.isLate ? .red : .primary)
+                    .frame(alignment: .leading)
+            }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 100)
         }
-        Spacer()
-        
-        VStack {
-            Text("Priority: \(item.priority)")
-            Text("Description: \(item.description)")
-            Text(item.lateByMessage)
-                .bold(item.isLate)
-                .foregroundStyle(item.isLate ? .red : .primary)
-            //            .multilineTextAlignment(.leading)
-        }
-//        .padding(.all, 0)
-        Spacer()
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity,
+            alignment: .leading
+        )
+        .background(.bg)
     }
 }
 
 //#Preview {
-//    ItemView(item: String)
+//    ItemView(item: TodoItem)
 //}

@@ -37,32 +37,62 @@ struct MenuView: View {
         return formatter.string(from: date)
     }
     
-    var body: some View {        Toggle("Light Mode", isOn: $isLight)
-        //                        .tint(.regText)
+    var body: some View {
         NavigationStack{
-            //            Toggle("Light Mode", isOn: $isLight)
-            //                        .tint(.regText)
-            List{
-                
-                ForEach(0..<list.count, id:\.self){ localId in
-                    NavigationLink(destination: ItemView(item: list[localId])) {
-                        Image(ViewUtils.getIcon(priority: list[localId].priority))
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                        
-                        Text("\(list[localId].title)\nDeadline: \(formatDate(date: list[localId].deadline))")
+            VStack {
+                Toggle("Light Mode", isOn: $isLight)
+        //                                .tint(.regText)
+                List{
+                    
+                    
+                    ForEach(0..<list.count, id:\.self){ localId in
+                        NavigationLink(destination: ItemView(item: list[localId])) {
+                            Image(ViewUtils.getIcon(priority: list[localId].priority))
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                            
+                            Text("\(list[localId].title)\nDeadline: \(formatDate(date: list[localId].deadline))")
+                        }
+                        .listRowBackground(isLight ? Color(.systemBackground) : Color("ListRowColor")) // Sets background for each row
                     }
                 }
-                
+                .scrollContentBackground(!isLight ? .hidden : .automatic)
             }
             .navigationTitle(Text("Todo List"))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            //        .foregroundStyle(.regText)
+            
+            .background(.bg)
+            .preferredColorScheme(isLight ? .light : .dark)
+
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        //        .foregroundStyle(.regText)
-        .background(.colorBg)
-        .preferredColorScheme(isLight ? .light : .dark)
+
         
     }
+//    
+//    var body: some View {
+//
+//        NavigationStack {
+//            VStack {
+//                Toggle("Light Mode?", isOn: $isLight)
+//    //                .tint(.regText)
+//                
+//                Spacer()
+//                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+//                Text("A simple demo for customizing color schemes in dark and light modes")
+//                    .multilineTextAlignment(.center)
+//                Spacer()
+//            }
+//            .padding(.all, 50)
+//            .frame(maxWidth: .infinity, maxHeight: .infinity)
+//    //        .foregroundStyle(.regText)
+//            .background(.bg)
+//            .preferredColorScheme(isLight ? .light : .dark)
+//            //.preferredColorScheme(.dark)
+//        }
+//
+//        
+//    }
 }
 
 #Preview {
