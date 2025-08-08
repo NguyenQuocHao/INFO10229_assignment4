@@ -6,7 +6,7 @@
 //
 
 public struct ViewUtils {
-    static func getIcon(priority: Priority) -> String {
+    static func getIconName(priority: Priority) -> String {
         switch priority {
         case .Critical:
             return "critical"

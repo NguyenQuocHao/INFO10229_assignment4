@@ -15,7 +15,7 @@ struct ItemView: View {
     var body: some View {
         VStack(alignment: .leading) {
             VStack{
-                Image(ViewUtils.getIcon(priority: item.priority))
+                Image(ViewUtils.getIconName(priority: item.priority))
                     .resizable()
                     .frame(width: 100, height: 120)
                 Text(item.title)
@@ -31,7 +31,7 @@ struct ItemView: View {
                 Text("Description: \(item.description)")
                 Text(item.lateByMessage)
                     .bold(item.isLate)
-                    .foregroundStyle(item.isLate ? .red : .primary)
+                    .foregroundStyle(item.isLate ? Color("CustomRedColor") : .primary)
                     .frame(alignment: .leading)
             }
             .padding(.horizontal, 20)
@@ -42,6 +42,7 @@ struct ItemView: View {
             maxHeight: .infinity,
             alignment: .leading
         )
+        .foregroundStyle(.bgOpposite)
         .background(.bg)
     }
 }

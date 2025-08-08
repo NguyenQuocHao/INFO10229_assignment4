@@ -14,19 +14,19 @@ struct MenuView: View {
         Calendar.current.date(byAdding: .day, value: -1, to: Date())!
     }()
     
-    @State var list: [TodoItem] = ([
+    @State var todoList: [TodoItem] = ([
         TodoItem(title: "Do iOS assignment",
                  priority: Priority.Important,
                  deadline: Calendar.current.date(byAdding: .day, value: -1, to: Date())!,
-                 description: "Test"),
-        TodoItem(title: "Study for CArchitecture",
+                 description: "I have to finish this by tonight, or else... I don't know"),
+        TodoItem(title: "Study for Computer Architecture",
                  priority: Priority.Critical,
                  deadline: Calendar.current.date(byAdding: .hour, value: 10, to: Date())!,
                  description: "Test"),
         TodoItem(title: "Do Math assignment",
                  priority: Priority.Normal,
                  deadline: Calendar.current.date(byAdding: .day, value: 2, to: Date())!,
-                 description: "Test"),
+                 description: "MATH!!"),
         
     ])
     
@@ -41,17 +41,16 @@ struct MenuView: View {
         NavigationStack{
             VStack {
                 Toggle("Light Mode", isOn: $isLight)
-        //                                .tint(.regText)
+                    .tint(.bgOpposite)
                 List{
-                    
-                    
-                    ForEach(0..<list.count, id:\.self){ localId in
-                        NavigationLink(destination: ItemView(item: list[localId])) {
-                            Image(ViewUtils.getIcon(priority: list[localId].priority))
+                    ForEach(0..<todoList.count, id:\.self){ localId in
+                        NavigationLink(destination: ItemView(item: todoList[localId])) {
+                            Image(ViewUtils.getIconName(priority: todoList[localId].priority))
                                 .resizable()
                                 .frame(width: 50, height: 50)
                             
-                            Text("\(list[localId].title)\nDeadline: \(formatDate(date: list[localId].deadline))")
+                            Text("\(todoList[localId].title)\nDeadline: \(formatDate(date: todoList[localId].deadline))")
+                                .foregroundStyle(todoList[localId].isLate ? Color("CustomRedColor") : .primary)
                         }
                         .listRowBackground(isLight ? Color(.systemBackground) : Color("ListRowColor")) // Sets background for each row
                     }
@@ -60,39 +59,11 @@ struct MenuView: View {
             }
             .navigationTitle(Text("Todo List"))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            //        .foregroundStyle(.regText)
-            
+            .foregroundStyle(.bgOpposite)
             .background(.bg)
             .preferredColorScheme(isLight ? .light : .dark)
-
         }
-
-        
     }
-//    
-//    var body: some View {
-//
-//        NavigationStack {
-//            VStack {
-//                Toggle("Light Mode?", isOn: $isLight)
-//    //                .tint(.regText)
-//                
-//                Spacer()
-//                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-//                Text("A simple demo for customizing color schemes in dark and light modes")
-//                    .multilineTextAlignment(.center)
-//                Spacer()
-//            }
-//            .padding(.all, 50)
-//            .frame(maxWidth: .infinity, maxHeight: .infinity)
-//    //        .foregroundStyle(.regText)
-//            .background(.bg)
-//            .preferredColorScheme(isLight ? .light : .dark)
-//            //.preferredColorScheme(.dark)
-//        }
-//
-//        
-//    }
 }
 
 #Preview {

@@ -19,16 +19,6 @@ struct TodoItem: Identifiable {
     var deadline = Date()
     var description = ""
     
-//    var lateByDay: Int {
-//        let components = Calendar.current.dateComponents([.day], from: deadline, to: Date())
-//        return components.day ?? 0
-//    }
-//    
-//    var lateByHour: Int {
-//        let components = Calendar.current.dateComponents([.day], from: deadline, to: Date())
-//        return components.day ?? 0
-//    }
-    
     var isLate: Bool {
         let components = Calendar.current.dateComponents([.day, .hour], from: deadline, to: Date())
         let day = components.day ?? 0
