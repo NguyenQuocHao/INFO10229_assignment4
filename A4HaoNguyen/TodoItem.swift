@@ -37,6 +37,15 @@ struct TodoItem: Identifiable {
         return day >= 0 && hour >= 0
     }
     
+    var deadlineStr: String {
+        let formatter = DateFormatter()
+
+        formatter.dateStyle = .long
+        formatter.timeStyle = .short
+        
+        return formatter.string(from: deadline)
+    }
+    
     var lateByMessage: String {
         let components = Calendar.current.dateComponents([.day, .hour], from: deadline, to: Date())
         let day = components.day ?? 0

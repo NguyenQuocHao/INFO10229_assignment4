@@ -22,8 +22,8 @@ struct ItemView: View {
                 .frame(width: 100, height: 120)
             
             Text(item.title)
-            Text(item.deadline, style: .date)
-            Text(item.deadline, style: .time)
+            Text(item.deadlineStr)
+                .bold()
         }
         Spacer()
         
