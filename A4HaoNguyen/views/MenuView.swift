@@ -10,15 +10,18 @@ struct MenuView: View {
     }()
     
     @State var todoList: [TodoItem] = ([
-        TodoItem(title: "Do iOS assignment",
+        TodoItem(id: 1,
+                 title: "Do iOS assignment",
                  priority: Priority.Important,
                  deadline: Calendar.current.date(byAdding: .day, value: -1, to: Date())!,
                  description: "I have to finish this by tonight, or else... I don't know"),
-        TodoItem(title: "Study for Computer Architecture",
+        TodoItem(id: 2,
+                 title: "Study for Computer Architecture",
                  priority: Priority.Critical,
                  deadline: Calendar.current.date(byAdding: .hour, value: 10, to: Date())!,
                  description: "Test"),
-        TodoItem(title: "Do Math assignment",
+        TodoItem(id: 3,
+                 title: "Do Math assignment",
                  priority: Priority.Normal,
                  deadline: Calendar.current.date(byAdding: .day, value: 2, to: Date())!,
                  description: "MATH!!"),
@@ -46,6 +49,7 @@ struct MenuView: View {
                             
                             Text("\(todoList[localId].title)\nDeadline: \(formatDate(date: todoList[localId].deadline))")
                                 .foregroundStyle(todoList[localId].isLate ? Color("CustomRedColor") : .primary)
+                                .bold(todoList[localId].isLate)
                         }
                         .listRowBackground(isLight ? Color(.systemBackground) : Color("ListRowColor")) // Sets background for each row
                     }
