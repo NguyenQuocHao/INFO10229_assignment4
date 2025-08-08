@@ -19,15 +19,15 @@ struct ItemView: View {
                     .bold()
                     .padding(.bottom, 25)
             }
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity) // make the 1st text block's width inifinity so the text can be aligned to center
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading) { // align the 2nd text block to left
                 Text("Priority: \(item.priority)")
                 Text("Description: \(item.description)")
                 Text(item.lateByMessage)
                     .bold(item.isLate)
-                    .foregroundStyle(item.isLate ? Color("CustomRedColor") : .primary)
-                    .frame(alignment: .leading)
+                    .foregroundStyle(item.isLate ? .customRed : .bgOpposite)
+                    .frame(alignment: .leading) // align text to left
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 100)

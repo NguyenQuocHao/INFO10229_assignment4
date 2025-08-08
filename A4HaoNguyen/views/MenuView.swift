@@ -5,6 +5,8 @@ import Foundation
 
 struct MenuView: View {
     @State private var isLight = true
+    
+    // Get another date based on today, as shown in this Stackoverflow discussion: https://stackoverflow.com/questions/44009804/swift-3-how-to-get-date-for-tomorrow-and-yesterday-take-care-special-case-ne
     @State private var yesterday: Date = {
         Calendar.current.date(byAdding: .day, value: -1, to: Date())!
     }()
@@ -28,13 +30,6 @@ struct MenuView: View {
         
     ])
     
-    private func formatDate(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium // Date only
-        formatter.timeStyle = .none
-        return formatter.string(from: date)
-    }
-    
     var body: some View {
         NavigationStack{
             VStack {
@@ -47,11 +42,11 @@ struct MenuView: View {
                                 .resizable()
                                 .frame(width: 50, height: 50)
                             
-                            Text("\(todoList[localId].title)\nDeadline: \(formatDate(date: todoList[localId].deadline))")
-                                .foregroundStyle(todoList[localId].isLate ? Color("CustomRedColor") : .primary)
+                            Text("\(todoList[localId].title)\nDeadline: \(ViewUtils.formatDate(date: todoList[localId].deadline))")
+                                .foregroundStyle(todoList[localId].isLate ? .customRed : .bgOpposite)
                                 .bold(todoList[localId].isLate)
                         }
-                        .listRowBackground(isLight ? Color(.systemBackground) : Color("ListRowColor")) // Sets background for each row
+                        .listRowBackground(isLight ? Color(.systemBackground) : .listRow) // Sets background for each row
                     }
                 }
                 .scrollContentBackground(!isLight ? .hidden : .automatic)

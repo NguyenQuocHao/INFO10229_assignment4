@@ -16,6 +16,7 @@ struct TodoItem: Identifiable {
     var description = ""
     
     var isLate: Bool {
+        // Date interval calculation technique is done following this thread: https://www.hackingwithswift.com/forums/100-days-of-swiftui/getting-the-difference-between-two-dates-in-swiftui/3070
         let components = Calendar.current.dateComponents([.day, .hour], from: deadline, to: Date())
         let day = components.day ?? 0
         let hour = components.hour ?? 0
