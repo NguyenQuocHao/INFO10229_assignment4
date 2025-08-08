@@ -1,9 +1,4 @@
-//
-//  ViewUtils.swift
-//  A4HaoNguyen
-//
-//  Created by user275773 on 8/8/25.
-//
+//  Code by Hao Nguyen, 991521091
 
 public struct ViewUtils {
     static func getIconName(priority: Priority) -> String {

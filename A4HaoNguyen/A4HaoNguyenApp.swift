@@ -1,9 +1,4 @@
-//
-//  A4HaoNguyenApp.swift
-//  A4HaoNguyen
-//
-//  Created by user275773 on 8/3/25.
-//
+//  Code by Hao Nguyen, 991521091
 
 import SwiftUI
 
